@@ -1,0 +1,20 @@
+#directories
+docs
+vendor
+node_modules
+dist
+
+#files
+phpunit.xml
+composer.lock
+composer.phar
+
+#hide files
+.idea
+.fleet
+.vscode
+.claude
+.DS_Store
+.phpunit.cache
+.phpunit.result.cache
+

@@ -1,0 +1,47 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/jetbrains-mono';
+@import '@fortawesome/fontawesome-svg-core/styles.css';
+
+@theme {
+    --font-sans: 'Inter Variable', sans-serif;
+    --font-mono: 'JetBrains Mono Variable', monospace;
+
+    --color-info: #7fd6ff;
+
+    --color-danger: #f2635f;
+    --color-danger-muted: #2c1414;
+
+    --color-success: #39d17f;
+    --color-success-muted: #0f2a1d;
+
+    --color-accent: #ffd21e;
+    --color-accent-hover: #e0b000;
+    --color-accent-muted: #463800;
+    --color-accent-subtle: #282000;
+
+    --color-primary: #080809;
+    --color-surface: #0c0c0e;
+    --color-surface-inset: #0f0f11;
+    --color-surface-raised: #141417;
+    --color-surface-elevated: #1b1b1f;
+
+    --color-warning-muted: #2b2200;
+    --color-warning: var(--color-accent);
+
+    --color-border: rgba(243, 243, 239, 0.1);
+    --color-border-subtle: rgba(243, 243, 239, 0.06);
+
+    --color-foreground: #f3f3ef;
+    --color-foreground-muted: rgba(243, 243, 239, 0.45);
+}
+
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-border);
+    }
+}

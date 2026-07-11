@@ -1,0 +1,71 @@
+{
+    "name": "fartex/strat",
+    "description": "Dashboard and management for Laravel migrations.",
+    "keywords": [
+        "laravel",
+        "laravel-migrations",
+        "migration-management",
+        "package"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lucas Rodrigues Cardoso",
+            "email": "c.lucasrodrigues22@gmail.com"
+        }
+    ],
+    "type": "library",
+    "require": {
+        "php": "^8.5",
+        "illuminate/support": "^13.19",
+        "illuminate/routing": "^13.19"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fartex\\Strat\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Fartex\\Strat\\Tests\\": "tests/",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Fartex\\Strat\\Providers\\ServiceProvider"
+            ]
+        }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^11.1",
+        "pestphp/pest": "^4.7",
+        "laravel/pint": "^1.29"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve --ansi"
+        ],
+        "test": [
+            "@clear",
+            "@php vendor/bin/pest"
+        ]
+    }
+}
