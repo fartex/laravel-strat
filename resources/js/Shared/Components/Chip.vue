@@ -1,4 +1,7 @@
 <script setup lang="ts">
+// ** Local Imports
+import type { TColor } from '@shared/App/types/shared';
+
 defineProps({
   icon: {
     type: String,
@@ -10,7 +13,7 @@ defineProps({
   },
   color: {
     default: null,
-    type: String as () => keyof typeof colorClasses | null,
+    type: String as () => TColor | null,
   },
   rounded: {
     default: 'md',
@@ -22,7 +25,7 @@ defineProps({
   },
 });
 
-const colorClasses = {
+const colorClasses: Record<TColor, string> = {
   info: 'text-info border-info bg-info/15',
   danger: 'text-danger border-danger bg-danger/15',
   accent: 'text-accent border-accent bg-accent/15',

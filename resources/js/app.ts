@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // ** Local Imports
 import App from './Layout/System.vue';
 import routes from './routes';
-import './fontawesome';
+import '@shared/App/types/fontawesome';
 import '../css/app.css';
 
 const router = createRouter({

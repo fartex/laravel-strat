@@ -3,6 +3,7 @@
 import Chip from '@shared/Components/Chip.vue';
 import Button from '@shared/Components/Button.vue';
 import Notification from '@/Components/Layout/Navbar/Notification.vue';
+import GithubStars from '@/Components/Layout/Navbar/GithubStars.vue';
 </script>
 
 <template>
@@ -24,17 +25,7 @@ import Notification from '@/Components/Layout/Navbar/Notification.vue';
           icon="fa-solid fa-caret-right"
         />
 
-        <a
-          target="_blank"
-          class="cursor-pointer"
-          href="https://github.com/fartex/laravel-strat"
-        >
-          <Chip
-            text="1.5k"
-            icon="fa-brands fa-github"
-            class="py-1.5 text-white"
-          />
-        </a>
+        <GithubStars />
 
         <Notification has-unread />
       </div>

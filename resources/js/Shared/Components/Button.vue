@@ -1,4 +1,7 @@
 <script setup lang="ts">
+// ** Local Imports
+import type { TColor } from '@shared/App/types/shared';
+
 defineProps({
   icon: {
     type: String,
@@ -14,11 +17,11 @@ defineProps({
   },
   color: {
     default: 'info',
-    type: String as () => keyof typeof variantClasses.flat,
+    type: String as () => TColor,
   },
 });
 
-const variantClasses = {
+const variantClasses: Record<'flat' | 'outline', Record<TColor, string>> = {
   flat: {
     info: 'bg-info text-primary',
     danger: 'bg-danger text-primary',
