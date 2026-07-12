@@ -12,7 +12,9 @@ import Menu from '@shared/Components/Menu/Index.vue';
       <div class="flex flex-col gap-2">
         <span class="border" />
 
-        <span class="text-foreground-muted text-xs uppercase"> Bancos </span>
+        <span class="text-foreground-muted text-xs uppercase">
+          {{ $t('Database') }}
+        </span>
 
         <div class="flex py-1 text-xs">
           <span class="text-success mr-1 animate-pulse">

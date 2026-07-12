@@ -1,0 +1,8 @@
+{
+    "enum": {
+        "locale": {
+            "en-US": "Inglês",
+            "pt-BR": "Português"
+        }
+    }
+}
