@@ -7,6 +7,14 @@ use Illuminate\Support\ServiceProvider as BaseProvider;
 class ServiceProvider extends BaseProvider
 {
     /**
+     * Register services.
+     */
+    public function register(): void
+    {
+        $this->mergeConfigFrom(__DIR__.'/../../config/strat.php', 'strat');
+    }
+
+    /**
      * Bootstrap services.
      */
     public function boot(): void
@@ -17,5 +25,9 @@ class ServiceProvider extends BaseProvider
         $this->publishes([
             __DIR__.'/../../dist' => public_path('vendor/strat'),
         ], 'strat-assets');
+
+        $this->publishes([
+            __DIR__.'/../../config/strat.php' => config_path('strat.php'),
+        ], 'strat-config');
     }
 }

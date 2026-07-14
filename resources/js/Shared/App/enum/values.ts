@@ -1,4 +1,4 @@
-import { LocaleEnum } from '@shared/App/enum';
+import { DatabaseDriverEnum, LocaleEnum } from '@shared/App/enum';
 
 export const LocaleValues: {
     title: string;
@@ -13,3 +13,10 @@ export const LocaleValues: {
         title: `enum.locale.${LocaleEnum.EN_US}`,
     },
 ];
+
+export const DatabaseDriverValues: Record<DatabaseDriverEnum, string> = {
+    [DatabaseDriverEnum.MYSQL]: 'MySQL',
+    [DatabaseDriverEnum.PGSQL]: 'PostgreSQL',
+    [DatabaseDriverEnum.SQLITE]: 'SQLite',
+    [DatabaseDriverEnum.SQLSRV]: 'SQL Server',
+};
