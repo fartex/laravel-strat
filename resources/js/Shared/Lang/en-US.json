@@ -1,3 +1,27 @@
 {
-    "Database": "Database"
+    "Database": "Database",
+    "Status": "Status",
+    "Migration": "Migration",
+    "Type": "Type",
+    "Table": "Table",
+    "Connection": "Connection",
+    "Batch": "Batch",
+    "Executed": "Executed",
+    "Duration": "Duration",
+    "Run": "Run",
+    "Details": "Details",
+    "month": {
+        "0": "Jan",
+        "1": "Feb",
+        "2": "Mar",
+        "3": "Apr",
+        "4": "May",
+        "5": "Jun",
+        "6": "Jul",
+        "7": "Aug",
+        "8": "Sep",
+        "9": "Oct",
+        "10": "Nov",
+        "11": "Dec"
+    }
 }

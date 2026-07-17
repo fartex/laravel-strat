@@ -12,6 +12,10 @@ export const MigrationTable: any = [
         title: 'Type',
     },
     {
+        key: 'table',
+        title: 'Table',
+    },
+    {
         key: 'connection',
         title: 'Connection',
     },
@@ -29,6 +33,6 @@ export const MigrationTable: any = [
     },
     {
         key: 'actions',
-        title: 'Actions',
+        title: '',
     },
 ];

@@ -59,9 +59,9 @@ class SyncMigrations
                 'updated_at' => Carbon::now(),
                 'table' => $this->resolveTable($name),
                 'type' => $this->resolveType($source),
+                'batch' => data_get($batches, $name) ?? null,
                 'connection' => $this->resolveConnection($source),
                 'status' => $this->getMigrationStatus($name, $ran),
-                'batch' => $batches[$name] ?? null,
             ];
         })
             ->values()
@@ -111,11 +111,16 @@ class SyncMigrations
      */
     private function resolveTable(string $name): string
     {
-        $description = implode('_', array_slice(explode('_', $name), 4));
-
-        return Str::endsWith($description, '_table')
-            ? Str::beforeLast($description, '_table')
-            : $description;
+        return Str::of($name)
+            ->after('_')
+            ->after('_')
+            ->after('_')
+            ->after('_')
+            ->when(
+                fn ($description) => $description->endsWith('_table'),
+                fn ($description) => $description->beforeLast('_table'),
+            )
+            ->toString();
     }
 
     /**

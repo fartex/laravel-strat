@@ -14,6 +14,8 @@ import Table from '@/Components/Dashboard/Table.vue';
 
 useHead({ title: 'Migrations' });
 
+const syncing = ref(false);
+
 const activeTab = ref('all');
 
 const activeConnection = ref('all');
@@ -24,14 +26,27 @@ const { connections } = useDatabaseStatus();
 
 const dbList = computed(() => connections.value.map((connection) => connection.name));
 
-const fetchMigrations = (): void => {
-  axios
+const fetchMigrations = () => {
+  return axios
     .get<Migration[]>('/migrations')
     .then((response) => {
       migrations.value = response.data;
     })
     .catch(() => {
       migrations.value = [];
+    });
+};
+
+const syncMigrations = (): void => {
+  syncing.value = true;
+
+  axios
+    .get('/sync-migrations')
+    .then(() => fetchMigrations())
+    .finally(() => {
+      setTimeout(() => {
+        syncing.value = false;
+      }, 3000);
     });
 };
 
@@ -58,13 +73,24 @@ onMounted(() => {
     <div class="flex flex-row justify-between gap-2">
       <Tabs v-model="activeTab" />
 
-      <div class="flex">
+      <div class="flex gap-3">
         <Button
-          color="accent"
-          class="text-xs"
+          color="success"
+          :spin="syncing"
           variant="outline"
-          :text="$t('All Connections')"
+          :disabled="syncing"
+          icon="fa-solid fa-rotate"
+          v-on:click="syncMigrations()"
         />
+
+        <div class="flex flex-row">
+          <Button
+            color="accent"
+            class="text-xs"
+            variant="outline"
+            :text="$t('All Connections')"
+          />
+        </div>
       </div>
     </div>
 

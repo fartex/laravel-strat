@@ -5,10 +5,11 @@ import {
     faCaretRight,
     faCircle,
     faGear,
+    faRotate,
     faTable,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 config.autoAddCss = false;
 
-library.add(faBell, faBook, faCaretRight, faCircle, faGear, faTable, faGithub);
+library.add(faBell, faBook, faCaretRight, faCircle, faGear, faRotate, faTable, faGithub);
