@@ -3,6 +3,10 @@
 import type { TColor } from '@shared/App/types/shared';
 
 defineProps({
+  size: {
+    type: String,
+    default: 'md',
+  },
   icon: {
     type: String,
     default: null,

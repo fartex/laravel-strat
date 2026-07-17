@@ -1,5 +1,27 @@
 import { DatabaseDriverEnum, LocaleEnum } from '@shared/App/enum';
 
+export const DatabaseDriverValues: {
+    title: string;
+    value: string;
+}[] = [
+    {
+        value: DatabaseDriverEnum.MYSQL,
+        title: `enum.database_driver.${DatabaseDriverEnum.MYSQL}`,
+    },
+    {
+        value: DatabaseDriverEnum.SQLITE,
+        title: `enum.database_driver.${DatabaseDriverEnum.SQLITE}`,
+    },
+    {
+        value: DatabaseDriverEnum.PGSQL,
+        title: `enum.database_driver.${DatabaseDriverEnum.PGSQL}`,
+    },
+    {
+        value: DatabaseDriverEnum.SQLSRV,
+        title: `enum.database_driver.${DatabaseDriverEnum.SQLSRV}`,
+    },
+];
+
 export const LocaleValues: {
     title: string;
     value: string;
@@ -13,10 +35,3 @@ export const LocaleValues: {
         title: `enum.locale.${LocaleEnum.EN_US}`,
     },
 ];
-
-export const DatabaseDriverValues: Record<DatabaseDriverEnum, string> = {
-    [DatabaseDriverEnum.MYSQL]: 'MySQL',
-    [DatabaseDriverEnum.PGSQL]: 'PostgreSQL',
-    [DatabaseDriverEnum.SQLITE]: 'SQLite',
-    [DatabaseDriverEnum.SQLSRV]: 'SQL Server',
-};

@@ -1,0 +1,34 @@
+export const MigrationTable: any = [
+    {
+        key: 'status',
+        title: 'Status',
+    },
+    {
+        key: 'migration',
+        title: 'Migration',
+    },
+    {
+        key: 'type',
+        title: 'Type',
+    },
+    {
+        key: 'connection',
+        title: 'Connection',
+    },
+    {
+        key: 'batch',
+        title: 'Batch',
+    },
+    {
+        key: 'executed',
+        title: 'Executed',
+    },
+    {
+        key: 'duration',
+        title: 'Duration',
+    },
+    {
+        key: 'actions',
+        title: 'Actions',
+    },
+];

@@ -3,6 +3,12 @@
         "locale": {
             "en-US": "English",
             "pt-BR": "Portuguese"
+        },
+        "database_driver": {
+            "mysql": "MySQL",
+            "sqlite": "SQLite",
+            "pgsql": "PostgreSQL",
+            "sqlsrv": "SQL Server"
         }
     }
 }

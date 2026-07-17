@@ -8,7 +8,7 @@ export const admin = (): IMenuItems => {
             id: "9hfm5",
             title: "Dashboard",
             path: "/dashboard",
-            icon: "far fa-house",
+            icon: "fas fa-table",
         },
         {
             id: "8fa7s",

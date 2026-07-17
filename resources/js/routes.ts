@@ -8,8 +8,8 @@ export default [
         redirect: '/dashboard',
     },
     {
-        path: '/dashboard',
         name: 'dashboard',
+        path: '/dashboard',
         component: dashboard,
     },
     {

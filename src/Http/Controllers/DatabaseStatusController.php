@@ -2,7 +2,7 @@
 
 namespace Fartex\Strat\Http\Controllers;
 
-use Fartex\Strat\Services\GetDatabaseStatusService;
+use Fartex\Strat\Actions\GetDatabaseStatus;
 use Illuminate\Http\JsonResponse;
 
 class DatabaseStatusController extends Controller
@@ -10,8 +10,8 @@ class DatabaseStatusController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(GetDatabaseStatusService $service): JsonResponse
+    public function __invoke(GetDatabaseStatus $status): JsonResponse
     {
-        return response()->json($service->handle());
+        return response()->json($status->handle());
     }
 }

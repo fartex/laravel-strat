@@ -2,21 +2,17 @@
 import { onMounted, onUnmounted, ref } from 'vue';
 import axios from 'axios';
 
-export interface DatabaseConnectionStatus {
-    name: string;
-    online: boolean;
-    driver: string | null;
-    database: string | null;
-    latency_ms: number | null;
-}
+// ** Local Imports
+import { TDatabaseConnectionStatus } from '@shared/App/types/shared';
 
+// Get all database connections status
 export function useDatabaseStatus() {
-    const connections = ref<DatabaseConnectionStatus[]>([]);
+    const connections = ref<TDatabaseConnectionStatus[]>([]);
     let timer: ReturnType<typeof setInterval> | undefined;
 
-    const fetchStatus = (): void => {
+    const getStatus = (): void => {
         axios
-            .get<DatabaseConnectionStatus[]>('/database-status')
+            .get<TDatabaseConnectionStatus[]>('/database-status')
             .then((response) => {
                 connections.value = response.data;
             })
@@ -29,9 +25,9 @@ export function useDatabaseStatus() {
     };
 
     onMounted(() => {
-        fetchStatus();
+        getStatus();
 
-        timer = setInterval(fetchStatus, 15000);
+        timer = setInterval(getStatus, 15000);
     });
 
     onUnmounted(() => {
