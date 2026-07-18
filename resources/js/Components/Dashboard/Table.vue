@@ -10,7 +10,7 @@ import { MigrationTable } from '@shared/App/types/tables';
 import { Migration } from '@shared/App/types/models';
 import type { TColor } from '@shared/App/types/shared';
 import Chip from '@shared/Components/Chip.vue';
-import axios from 'axios';
+import { useRunMigrations } from '@shared/App/composables/useRunMigrations';
 
 defineProps({
   migrations: {
@@ -19,7 +19,11 @@ defineProps({
   },
 });
 
+const emit = defineEmits(['ran']);
+
 const { t } = useI18n();
+
+const { runningIds, runMigrations } = useRunMigrations();
 
 const statusTextClasses: Record<TColor, string> = {
   info: 'text-info',
@@ -29,10 +33,8 @@ const statusTextClasses: Record<TColor, string> = {
   warning: 'text-warning',
 };
 
-const runMigrations = (id: number | null): void => {
-  axios.get(`/run-migrations/${id}`).then(() => {
-    //
-  });
+const runMigration = (id: number): void => {
+  runMigrations(id).finally(() => emit('ran'));
 };
 
 function formatBatch(value: number | null): string {
@@ -158,7 +160,9 @@ function migrationTypeColor(type: string): TColor {
               color="accent"
               :text="$t('Run')"
               icon="fa-solid fa-caret-right"
-              v-on:click="runMigrations(migration.id)"
+              :spin="runningIds.has(migration.id)"
+              v-on:click="runMigration(migration.id)"
+              :disabled="runningIds.has(migration.id)"
               v-if="migration.status === MigrationStatusEnum.PENDING"
             />
           </td>

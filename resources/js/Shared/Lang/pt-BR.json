@@ -11,7 +11,10 @@
     "Executed": "Executada",
     "Duration": "Duração",
     "Run": "Rodar",
+    "Run Pendents": "Rodar Pendentes",
     "Details": "Detalhe",
+    "Migrations": "Migrations",
+    "Unknown": "Desconhecido",
     "migrations": {
         "total": "{count} no total",
         "executed": "{count} executadas",

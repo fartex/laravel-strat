@@ -11,7 +11,10 @@
     "Executed": "Executed",
     "Duration": "Duration",
     "Run": "Run",
+    "Run Pendents": "Run Pending",
     "Details": "Details",
+    "Migrations": "Migrations",
+    "Unknown": "Unknown",
     "migrations": {
         "total": "{count} in total",
         "executed": "{count} executed",

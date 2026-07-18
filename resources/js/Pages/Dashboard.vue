@@ -112,7 +112,7 @@ watch([activeTab, activeDatabase], () => {
       <div class="flex gap-3">
         <span
           v-on:click="!syncing && syncMigrations()"
-          class="hover:bg-success-muted text-success border-success cursor-pointer rounded-full border p-2 text-xs"
+          class="hover:bg-success-muted text-success cursor-pointer p-2 text-xs"
         >
           <font-awesome-icon
             class="p-1"
@@ -128,7 +128,10 @@ watch([activeTab, activeDatabase], () => {
       </div>
     </div>
 
-    <Table :migrations="pagedMigrations" />
+    <Table
+      :migrations="pagedMigrations"
+      v-on:ran="fetchMigrations"
+    />
 
     <div class="flex justify-end">
       <Pagination
