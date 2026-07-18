@@ -12,8 +12,8 @@ defineProps({
 </script>
 
 <template>
-  <div class="flex flex-col gap-1">
-    <span class="text-foreground-muted text-[13px]">
+  <div class="flex flex-col gap-1 font-mono">
+    <span class="text-foreground-muted text-[10px]">
       {{ breadcrumb }}
     </span>
 

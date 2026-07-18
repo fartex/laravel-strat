@@ -17,7 +17,7 @@ export const MigrationTable: any = [
     },
     {
         key: 'connection',
-        title: 'Connection',
+        title: 'Database',
     },
     {
         key: 'batch',

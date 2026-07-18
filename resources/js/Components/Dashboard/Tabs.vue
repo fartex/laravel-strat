@@ -1,32 +1,41 @@
 <script setup lang="ts">
+import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-defineProps({
+// ** Local Imports
+import { MigrationStatusEnum } from '@shared/App/enum';
+import type { TMigrationCounts } from '@shared/App/types/shared';
+
+const props = defineProps({
   modelValue: {
     required: true,
     type: [String, Number],
+  },
+  counts: {
+    required: true,
+    type: Object as () => TMigrationCounts,
   },
 });
 
 const { t } = useI18n();
 
-const tabs = [
+const tabs = computed(() => [
   {
-    count: 13,
     value: 'all',
     label: t('All'),
+    count: props.counts.total,
   },
   {
-    count: 4,
-    value: 'pending',
     label: t('Pending'),
+    value: MigrationStatusEnum.PENDING,
+    count: props.counts.pending,
   },
   {
-    count: 9,
-    value: 'executed',
     label: t('Executed'),
+    value: MigrationStatusEnum.EXECUTED,
+    count: props.counts.executed,
   },
-];
+]);
 
 const emit = defineEmits(['update:modelValue']);
 

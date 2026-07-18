@@ -62,7 +62,7 @@ const colorClasses: Record<TColor, string> = {
         'rounded-full': rounded === 'full',
         'font-semibold': font === 'semibold',
       },
-      'flex items-center gap-1 px-2 text-[10px]',
+      'inline-flex items-center gap-1 px-2 text-[10px]',
       color ? colorClasses[color] : 'text-foreground-muted',
       variant === 'outline' && color ? borderClasses[color] : '',
     ]"

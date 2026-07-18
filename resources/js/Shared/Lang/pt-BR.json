@@ -6,10 +6,17 @@
     "Table": "Tabela",
     "Connection": "Conexão",
     "Batch": "Batch",
+    "All": "Todas",
+    "Pending": "Pendente",
     "Executed": "Executada",
     "Duration": "Duração",
     "Run": "Rodar",
     "Details": "Detalhe",
+    "migrations": {
+        "total": "{count} no total",
+        "executed": "{count} executadas",
+        "pending": "{count} pendentes"
+    },
     "month": {
         "0": "jan",
         "1": "fev",

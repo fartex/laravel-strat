@@ -60,7 +60,7 @@ class SyncMigrations
                 'table' => $this->resolveTable($name),
                 'type' => $this->resolveType($source),
                 'batch' => data_get($batches, $name) ?? null,
-                'connection' => $this->resolveConnection($source),
+                'database' => $this->resolveDatabase($this->resolveConnection($source)),
                 'status' => $this->getMigrationStatus($name, $ran),
             ];
         })
@@ -103,6 +103,21 @@ class SyncMigrations
             ->toString();
 
         return blank($connection) ? config('database.default') : $connection;
+    }
+
+    /**
+     * Resolve the actual database name a connection points to.
+     */
+    private function resolveDatabase(string $connection): string
+    {
+        $database = config("database.connections.{$connection}.database") ?? $connection;
+
+        // Sqlite stores an absolute file path; show just the file name.
+        if (config("database.connections.{$connection}.driver") === 'sqlite' && $database !== ':memory:') {
+            return basename($database);
+        }
+
+        return $database;
     }
 
     /**
@@ -168,7 +183,7 @@ class SyncMigrations
                 'status',
                 'batch',
                 'updated_at',
-                'connection',
+                'database',
             ]);
     }
 }

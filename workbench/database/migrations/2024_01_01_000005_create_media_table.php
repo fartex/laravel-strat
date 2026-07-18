@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('media', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('post_id')->constrained()->cascadeOnDelete();
-            $table->string('path');
-            $table->string('mime_type');
-            $table->unsignedBigInteger('size');
-            $table->timestamps();
+        Schema::table('posts', function (Blueprint $table) {
+            $table->string('cover_image_path')->nullable()->after('user_id');
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('media');
+        Schema::table('posts', function (Blueprint $table) {
+            $table->dropColumn('cover_image_path');
+        });
     }
 };

@@ -4,7 +4,7 @@ export interface Migration {
     id: number;
     migration: string;
     table: string;
-    connection: string;
+    database: string;
     type: MigrationTypeEnum;
     status: MigrationStatusEnum;
     batch: number | null;

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('migration')->unique();
             $table->string('table');
-            $table->string('connection');
+            $table->string('database');
             $table->string('type');
             $table->string('status');
             $table->unsignedInteger('batch')->nullable();

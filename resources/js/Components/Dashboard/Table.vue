@@ -10,6 +10,7 @@ import { MigrationTable } from '@shared/App/types/tables';
 import { Migration } from '@shared/App/types/models';
 import type { TColor } from '@shared/App/types/shared';
 import Chip from '@shared/Components/Chip.vue';
+import axios from 'axios';
 
 defineProps({
   migrations: {
@@ -26,6 +27,12 @@ const statusTextClasses: Record<TColor, string> = {
   accent: 'text-accent',
   success: 'text-success',
   warning: 'text-warning',
+};
+
+const runMigrations = (id: number | null): void => {
+  axios.get(`/run-migrations/${id}`).then(() => {
+    //
+  });
 };
 
 function formatBatch(value: number | null): string {
@@ -56,6 +63,10 @@ function formatExecutedAt(value: string | null): string {
 
 function statusMeta(status: string) {
   return MigrationStatusValues.find((item) => item.value === status);
+}
+
+function truncate(value: string, length: number): string {
+  return value.length > length ? `${value.slice(0, length)}…` : value;
 }
 
 function migrationTypeColor(type: string): TColor {
@@ -101,7 +112,9 @@ function migrationTypeColor(type: string): TColor {
           </td>
 
           <td class="text-foreground px-4 py-3 font-mono text-xs">
-            {{ migration.migration }}
+            <span :title="migration.migration">
+              {{ truncate(migration.migration, 50) }}
+            </span>
           </td>
 
           <td class="px-1 py-3">
@@ -112,11 +125,15 @@ function migrationTypeColor(type: string): TColor {
           </td>
 
           <td class="text-foreground-muted px-4 py-3 font-mono text-xs">
-            {{ migration.table }}
+            <span :title="migration.table">
+              {{ truncate(migration.table, 30) }}
+            </span>
           </td>
 
           <td class="text-foreground-muted px-4 py-3 font-mono text-xs">
-            {{ $t(`enum.database_driver.${migration.connection}`) }}
+            <span :title="migration.database">
+              {{ truncate(migration.database, 20) }}
+            </span>
           </td>
 
           <td
@@ -141,6 +158,7 @@ function migrationTypeColor(type: string): TColor {
               color="accent"
               :text="$t('Run')"
               icon="fa-solid fa-caret-right"
+              v-on:click="runMigrations(migration.id)"
               v-if="migration.status === MigrationStatusEnum.PENDING"
             />
           </td>

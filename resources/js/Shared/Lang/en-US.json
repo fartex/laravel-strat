@@ -6,10 +6,17 @@
     "Table": "Table",
     "Connection": "Connection",
     "Batch": "Batch",
+    "All": "All",
+    "Pending": "Pending",
     "Executed": "Executed",
     "Duration": "Duration",
     "Run": "Run",
     "Details": "Details",
+    "migrations": {
+        "total": "{count} in total",
+        "executed": "{count} executed",
+        "pending": "{count} pending"
+    },
     "month": {
         "0": "Jan",
         "1": "Feb",
