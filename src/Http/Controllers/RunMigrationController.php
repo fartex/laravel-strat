@@ -11,7 +11,7 @@ class RunMigrationController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(?int $id, RunMigrations $runMigrations): JsonResponse
+    public function __invoke(RunMigrations $runMigrations, ?int $id = null): JsonResponse
     {
         if (! config('strat.migrations.async')) {
             $runMigrations->handle($id);

@@ -41,12 +41,12 @@ function selectTab(value: string) {
       v-for="tab in tabs"
       v-on:click="selectTab(tab.value)"
       :class="[
-        'group flex cursor-pointer items-center gap-1.5 border-r px-3 py-1 text-sm ' +
+        'group flex cursor-pointer items-center gap-1.5 border-r px-3 py-1 text-xs ' +
           'font-semibold transition-colors select-none first:rounded-l-md last:rounded-r-md last:border-r-0',
         modelValue === tab.value ? 'bg-accent/20 text-accent' : 'text-foreground-muted',
       ]"
     >
-      <span :class="modelValue !== tab.value && 'group-hover:text-foreground'">
+      <span :class="modelValue !== tab.value && 'group-hover:text-foreground text-xs'">
         {{ tab.label.substring(0, 15) }}
       </span>
     </div>

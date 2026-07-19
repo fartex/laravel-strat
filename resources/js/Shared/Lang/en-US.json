@@ -15,6 +15,9 @@
     "Details": "Details",
     "Migrations": "Migrations",
     "Unknown": "Unknown",
+    "Connected": "Connected",
+    "Disconnected": "Disconnected",
+    "Database Connected": "Database Connected",
     "migrations": {
         "total": "{count} in total",
         "executed": "{count} executed",

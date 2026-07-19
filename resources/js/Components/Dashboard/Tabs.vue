@@ -51,7 +51,8 @@ function selectTab(value: string | number) {
       v-for="tab in tabs"
       v-on:click="selectTab(tab.value)"
       :class="[
-        'group flex cursor-pointer items-center gap-1.5 border-r px-3 py-1 text-sm font-semibold transition-colors select-none first:rounded-l-md last:rounded-r-md last:border-r-0',
+        'group flex cursor-pointer items-center gap-1.5 border-r px-3 py-1 ' +
+          'text-xs font-semibold transition-colors select-none first:rounded-l-md last:rounded-r-md last:border-r-0',
         modelValue === tab.value ? 'bg-accent/20 text-accent' : 'text-foreground-muted',
       ]"
     >
@@ -62,7 +63,7 @@ function selectTab(value: string | number) {
       <span
         v-if="tab.count !== undefined"
         :class="[
-          'text-sm font-light',
+          'text-xs font-light',
           modelValue === tab.value
             ? 'text-accent'
             : 'text-foreground-muted group-hover:text-foreground',

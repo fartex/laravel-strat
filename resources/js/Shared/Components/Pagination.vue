@@ -4,12 +4,12 @@ import { computed } from 'vue';
 
 const props = defineProps({
   modelValue: {
-    required: true,
     type: Number,
+    required: true,
   },
   lastPage: {
-    required: true,
     type: Number,
+    required: true,
   },
 });
 

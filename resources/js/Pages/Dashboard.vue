@@ -14,6 +14,7 @@ import Pagination from '@shared/Components/Pagination.vue';
 import Table from '@/Components/Dashboard/Table.vue';
 import type { TPaginated } from '@shared/App/types/shared';
 import MigrationStatus from '@/Components/Dashboard/MigrationStatus.vue';
+import Connections from '@/Components/Dashboard/Connections.vue';
 
 useHead({ title: 'Migrations' });
 
@@ -112,7 +113,7 @@ watch([activeTab, activeDatabase], () => {
       <div class="flex gap-3">
         <span
           v-on:click="!syncing && syncMigrations()"
-          class="hover:bg-success-muted text-success cursor-pointer p-2 text-xs"
+          class="hover:bg-success-muted text-success cursor-pointer py-2 text-sm"
         >
           <font-awesome-icon
             class="p-1"
@@ -139,5 +140,7 @@ watch([activeTab, activeDatabase], () => {
         :last-page="lastPage"
       />
     </div>
+
+    <Connections :migrations="migrations" />
   </div>
 </template>

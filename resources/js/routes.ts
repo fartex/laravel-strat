@@ -12,9 +12,9 @@ export default [
         path: '/dashboard',
         component: dashboard,
     },
-    {
-        name: 'settings',
-        path: '/settings',
-        component: setting,
-    },
+    // {
+    //     name: 'settings',
+    //     path: '/settings',
+    //     component: setting,
+    // },
 ];
