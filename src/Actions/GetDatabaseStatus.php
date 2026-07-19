@@ -1,13 +1,13 @@
 <?php
 
-namespace Fartex\Strat\Services;
+namespace Fartex\Strat\Actions;
 
 use Illuminate\Support\Facades\DB;
 
-class GetDatabaseStatusService
+class GetDatabaseStatus
 {
     /**
-     * Execute the service.
+     * Execute the action.
      */
     public function handle(): array
     {

@@ -1,3 +1,40 @@
 {
-    "Database": "Banco de dados"
+    "Database": "Banco de dados",
+    "Status": "Status",
+    "Migration": "Migration",
+    "Type": "Tipo",
+    "Table": "Tabela",
+    "Connection": "Conexão",
+    "Batch": "Batch",
+    "All": "Todas",
+    "Pending": "Pendente",
+    "Executed": "Executada",
+    "Duration": "Duração",
+    "Run": "Rodar",
+    "Run Pendents": "Rodar Pendentes",
+    "Details": "Detalhe",
+    "Migrations": "Migrations",
+    "Unknown": "Desconhecido",
+    "Connected": "Conectado",
+    "Disconnected": "Desconectado",
+    "Database Connected": "Banco de Dados Conectado",
+    "migrations": {
+        "total": "{count} no total",
+        "executed": "{count} executadas",
+        "pending": "{count} pendentes"
+    },
+    "month": {
+        "0": "jan",
+        "1": "fev",
+        "2": "mar",
+        "3": "abr",
+        "4": "mai",
+        "5": "jun",
+        "6": "jul",
+        "7": "ago",
+        "8": "set",
+        "9": "out",
+        "10": "nov",
+        "11": "dez"
+    }
 }

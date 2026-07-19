@@ -1,8 +1,28 @@
 import { config, library } from '@fortawesome/fontawesome-svg-core';
-import { faBell, faBook, faCaretRight, faCircle, faGear } from '@fortawesome/free-solid-svg-icons';
-import { faHouse } from '@fortawesome/free-regular-svg-icons';
+import {
+    faBell,
+    faBook,
+    faGear,
+    faTable,
+    faCircle,
+    faRotate,
+    faCaretRight,
+    faChevronLeft,
+    faChevronRight,
+} from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 config.autoAddCss = false;
 
-library.add(faBell, faBook, faCaretRight, faCircle, faGear, faHouse, faGithub);
+library.add(
+    faBell,
+    faBook,
+    faGear,
+    faTable,
+    faGithub,
+    faRotate,
+    faCircle,
+    faCaretRight,
+    faChevronLeft,
+    faChevronRight,
+);

@@ -1,3 +1,40 @@
 {
-    "Database": "Database"
+    "Database": "Database",
+    "Status": "Status",
+    "Migration": "Migration",
+    "Type": "Type",
+    "Table": "Table",
+    "Connection": "Connection",
+    "Batch": "Batch",
+    "All": "All",
+    "Pending": "Pending",
+    "Executed": "Executed",
+    "Duration": "Duration",
+    "Run": "Run",
+    "Run Pendents": "Run Pending",
+    "Details": "Details",
+    "Migrations": "Migrations",
+    "Unknown": "Unknown",
+    "Connected": "Connected",
+    "Disconnected": "Disconnected",
+    "Database Connected": "Database Connected",
+    "migrations": {
+        "total": "{count} in total",
+        "executed": "{count} executed",
+        "pending": "{count} pending"
+    },
+    "month": {
+        "0": "Jan",
+        "1": "Feb",
+        "2": "Mar",
+        "3": "Apr",
+        "4": "May",
+        "5": "Jun",
+        "6": "Jul",
+        "7": "Aug",
+        "8": "Sep",
+        "9": "Oct",
+        "10": "Nov",
+        "11": "Dec"
+    }
 }

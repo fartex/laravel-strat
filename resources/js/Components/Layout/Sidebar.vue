@@ -6,7 +6,7 @@ import DatabaseStatus from '@/Components/Layout/Sidebar/DatabaseStatus.vue';
 </script>
 
 <template>
-  <div class="bg-surface-raised w-60 border-r p-4">
+  <div class="bg-surface-raised w-52 border-r p-4">
     <div class="flex h-full flex-col justify-between">
       <Menu :items="menu('admin')" />
 

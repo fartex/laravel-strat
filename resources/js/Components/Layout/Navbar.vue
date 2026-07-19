@@ -4,6 +4,9 @@ import Chip from '@shared/Components/Chip.vue';
 import Button from '@shared/Components/Button.vue';
 import Notification from '@/Components/Layout/Navbar/Notification.vue';
 import GithubStars from '@/Components/Layout/Navbar/GithubStars.vue';
+import { useRunMigrations } from '@shared/App/composables/useRunMigrations';
+
+const { runningAll, runMigrations } = useRunMigrations();
 </script>
 
 <template>
@@ -21,8 +24,11 @@ import GithubStars from '@/Components/Layout/Navbar/GithubStars.vue';
       <div class="flex flex-row items-center gap-4">
         <Button
           color="accent"
-          text="Rodar pendentes"
+          :spin="runningAll"
+          :disabled="runningAll"
+          :text="$t('Run Pendents')"
           icon="fa-solid fa-caret-right"
+          v-on:click="runMigrations()"
         />
 
         <GithubStars />

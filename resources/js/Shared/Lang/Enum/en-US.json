@@ -3,6 +3,23 @@
         "locale": {
             "en-US": "English",
             "pt-BR": "Portuguese"
+        },
+        "database_driver": {
+            "mysql": "MySQL",
+            "sqlite": "SQLite",
+            "pgsql": "PostgreSQL",
+            "sqlsrv": "SQL Server"
+        },
+        "migration_status": {
+            "pending": "Pending",
+            "executed": "Executed"
+        },
+        "migration_type": {
+            "create": "CREATE",
+            "alter": "ALTER",
+            "drop": "DROP",
+            "rename": "RENAME",
+            "unknown": "UNKNOWN"
         }
     }
 }

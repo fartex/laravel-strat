@@ -8,13 +8,13 @@ export default [
         redirect: '/dashboard',
     },
     {
-        path: '/dashboard',
         name: 'dashboard',
+        path: '/dashboard',
         component: dashboard,
     },
-    {
-        name: 'settings',
-        path: '/settings',
-        component: setting,
-    },
+    // {
+    //     name: 'settings',
+    //     path: '/settings',
+    //     component: setting,
+    // },
 ];

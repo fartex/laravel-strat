@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\ServiceProvider;
+
+class StratServiceProvider extends ServiceProvider
+{
+    /**
+     * Bootstrap services.
+     */
+    public function boot(): void
+    {
+        // Controls who can access the Strat dashboard routes.
+        // Customize this before deploying to production.
+        Gate::define('viewStrat', function ($user = null) {
+            return app()->environment('local');
+        });
+    }
+}

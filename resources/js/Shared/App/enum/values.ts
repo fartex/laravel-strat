@@ -1,4 +1,32 @@
-import { DatabaseDriverEnum, LocaleEnum } from '@shared/App/enum';
+import {
+    DatabaseDriverEnum,
+    LocaleEnum,
+    MigrationStatusEnum,
+    MigrationTypeEnum,
+} from '@shared/App/enum';
+import type { TColor } from '@shared/App/types/shared';
+
+export const DatabaseDriverValues: {
+    title: string;
+    value: string;
+}[] = [
+    {
+        value: DatabaseDriverEnum.MYSQL,
+        title: `enum.database_driver.${DatabaseDriverEnum.MYSQL}`,
+    },
+    {
+        value: DatabaseDriverEnum.SQLITE,
+        title: `enum.database_driver.${DatabaseDriverEnum.SQLITE}`,
+    },
+    {
+        value: DatabaseDriverEnum.PGSQL,
+        title: `enum.database_driver.${DatabaseDriverEnum.PGSQL}`,
+    },
+    {
+        value: DatabaseDriverEnum.SQLSRV,
+        title: `enum.database_driver.${DatabaseDriverEnum.SQLSRV}`,
+    },
+];
 
 export const LocaleValues: {
     title: string;
@@ -14,9 +42,51 @@ export const LocaleValues: {
     },
 ];
 
-export const DatabaseDriverValues: Record<DatabaseDriverEnum, string> = {
-    [DatabaseDriverEnum.MYSQL]: 'MySQL',
-    [DatabaseDriverEnum.PGSQL]: 'PostgreSQL',
-    [DatabaseDriverEnum.SQLITE]: 'SQLite',
-    [DatabaseDriverEnum.SQLSRV]: 'SQL Server',
-};
+export const MigrationStatusValues: {
+    title: string;
+    value: string;
+    color: TColor;
+}[] = [
+    {
+        value: MigrationStatusEnum.PENDING,
+        title: `enum.migration_status.${MigrationStatusEnum.PENDING}`,
+        color: 'warning',
+    },
+    {
+        value: MigrationStatusEnum.EXECUTED,
+        title: `enum.migration_status.${MigrationStatusEnum.EXECUTED}`,
+        color: 'success',
+    },
+];
+
+export const MigrationTypeValues: {
+    title: string;
+    value: string;
+    color: TColor;
+}[] = [
+    {
+        color: 'success',
+        value: MigrationTypeEnum.CREATE,
+        title: `enum.migration_type.${MigrationTypeEnum.CREATE}`,
+    },
+    {
+        color: 'accent',
+        value: MigrationTypeEnum.ALTER,
+        title: `enum.migration_type.${MigrationTypeEnum.ALTER}`,
+    },
+    {
+        color: 'danger',
+        value: MigrationTypeEnum.DROP,
+        title: `enum.migration_type.${MigrationTypeEnum.DROP}`,
+    },
+    {
+        color: 'warning',
+        value: MigrationTypeEnum.RENAME,
+        title: `enum.migration_type.${MigrationTypeEnum.RENAME}`,
+    },
+    {
+        color: 'info',
+        value: MigrationTypeEnum.UNKNOWN,
+        title: `enum.migration_type.${MigrationTypeEnum.UNKNOWN}`,
+    },
+];

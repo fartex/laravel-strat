@@ -8,13 +8,13 @@ export const admin = (): IMenuItems => {
             id: "9hfm5",
             title: "Dashboard",
             path: "/dashboard",
-            icon: "far fa-house",
+            icon: "fas fa-table",
         },
-        {
-            id: "8fa7s",
-            title: "Settings",
-            path: "/settings",
-            icon: "fas fa-gear",
-        }
+        // {
+        //     id: "8fa7s",
+        //     title: "Settings",
+        //     path: "/settings",
+        //     icon: "fas fa-gear",
+        // }
     ];
 }
