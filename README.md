@@ -6,8 +6,6 @@
 
 **Dashboard and management for Laravel migrations.** Strat gives you a single place to see every migration in your application — which ones have run, which are still pending, and across which database connections — without leaving the browser.
 
-Think of it as Horizon, but for migrations.
-
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![PHP](https://img.shields.io/badge/php-%5E8.5-777bb4.svg)
 ![Laravel](https://img.shields.io/badge/laravel-%5E13.19-ff2d20.svg)
