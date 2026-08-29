@@ -1,7 +1,7 @@
 <?php
 
 test('it should report the default connection status', function () {
-    $this->get('/database-status')
+    $this->get($this->stratUrl('/database-status'))
         ->assertOk()
         ->assertJson([
             [

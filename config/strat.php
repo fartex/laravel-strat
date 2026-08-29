@@ -4,6 +4,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Dashboard Path
+    |--------------------------------------------------------------------------
+    |
+    | The URI path where the Strat dashboard will be accessible from. Feel
+    | free to change this path to anything you like.
+    |
+    */
+    'path' => env('STRAT_PATH', 'strat'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Database Connections
     |--------------------------------------------------------------------------
     |
