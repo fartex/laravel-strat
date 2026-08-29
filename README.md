@@ -51,6 +51,14 @@ php artisan vendor:publish --tag=strat-provider
 php artisan migrate
 ```
 
+## 🧭 Dashboard path
+
+By default, the dashboard is served at `/strat`. Change it by setting `STRAT_PATH` in your `.env`, or by editing the `path` value in the published `config/strat.php`:
+
+```php
+'path' => env('STRAT_PATH', 'strat'),
+```
+
 ## 🔐 Access control
 
 Strat ships with no default access, on purpose. After installing, customize the `viewStrat` gate in `app/Providers/StratServiceProvider.php` to control who can view the dashboard:
