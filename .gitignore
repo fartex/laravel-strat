@@ -2,7 +2,6 @@
 docs
 vendor
 node_modules
-dist
 
 #files
 phpunit.xml
