@@ -19,8 +19,6 @@ defineProps({
   },
 });
 
-const emit = defineEmits(['ran']);
-
 const { t } = useI18n();
 
 const { runningIds, runMigrations } = useRunMigrations();
@@ -34,7 +32,7 @@ const statusTextClasses: Record<TColor, string> = {
 };
 
 const runMigration = (id: number): void => {
-  runMigrations(id).finally(() => emit('ran'));
+  runMigrations(id);
 };
 
 function formatBatch(value: number | null): string {

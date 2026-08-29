@@ -15,6 +15,7 @@ import Table from '@/Components/Dashboard/Table.vue';
 import type { TPaginated } from '@shared/App/types/shared';
 import MigrationStatus from '@/Components/Dashboard/MigrationStatus.vue';
 import Connections from '@/Components/Dashboard/Connections.vue';
+import { useRunMigrations } from '@shared/App/composables/useRunMigrations';
 
 useHead({ title: 'Migrations' });
 
@@ -86,12 +87,18 @@ const fetchMigrations = () => {
     });
 };
 
+const { lastRanAt } = useRunMigrations();
+
 onMounted(() => {
   fetchMigrations();
 });
 
 watch([activeTab, activeDatabase], () => {
   currentPage.value = 1;
+});
+
+watch(lastRanAt, () => {
+  fetchMigrations();
 });
 </script>
 
@@ -129,10 +136,7 @@ watch([activeTab, activeDatabase], () => {
       </div>
     </div>
 
-    <Table
-      :migrations="pagedMigrations"
-      v-on:ran="fetchMigrations"
-    />
+    <Table :migrations="pagedMigrations" />
 
     <div class="flex justify-end">
       <Pagination
