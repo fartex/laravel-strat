@@ -1,4 +1,8 @@
-# Strat
+<p align="center">
+  <img src="resources/images/favicon.png" alt="Strat" width="96" height="96">
+</p>
+
+<h1 align="center">Strat</h1>
 
 **Dashboard and management for Laravel migrations.** Strat gives you a single place to see every migration in your application — which ones have run, which are still pending, and across which database connections — without leaving the browser.
 
@@ -7,7 +11,6 @@ Think of it as Horizon, but for migrations.
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![PHP](https://img.shields.io/badge/php-%5E8.5-777bb4.svg)
 ![Laravel](https://img.shields.io/badge/laravel-%5E13.19-ff2d20.svg)
-![Status](https://img.shields.io/badge/status-under%20active%20development-yellow.svg)
 
 > ⚠️ **Early stage.** Strat is under active development and its API, routes, and UI are still evolving. Expect breaking changes until a `1.0` release is tagged.
 
@@ -19,7 +22,6 @@ Think of it as Horizon, but for migrations.
 - **Automatic sync** — a scheduled job keeps migration state fresh every 30 minutes, with an on-demand sync endpoint too.
 - **Migration lifecycle tracking** — start/end events are recorded via Laravel's native migration events.
 - **Gate-based access control** — a single `viewStrat` gate decides who can see the dashboard, defined in your own app.
-- **Modern UI** — a Vue 3 + TypeScript + Tailwind CSS 4 single-page app, shipped precompiled, with i18n support (English and Brazilian Portuguese out of the box).
 
 ## 📦 Requirements
 

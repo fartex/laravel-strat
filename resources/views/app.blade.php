@@ -7,6 +7,7 @@
 
     <title>Strat</title>
 
+    <link rel="icon" href="{{ asset('vendor/strat/app.png') }}">
     <link rel="stylesheet" href="{{ asset('vendor/strat/app.css') }}">
 </head>
 <body>

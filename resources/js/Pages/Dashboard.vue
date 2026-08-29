@@ -113,7 +113,7 @@ watch([activeTab, activeDatabase], () => {
       <div class="flex gap-3">
         <span
           v-on:click="!syncing && syncMigrations()"
-          class="hover:bg-success-muted text-success cursor-pointer py-2 text-sm"
+          class="text-success cursor-pointer py-2 text-sm"
         >
           <font-awesome-icon
             class="p-1"
