@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
+    base: './',
     plugins: [vue(), tailwindcss()],
     build: {
         outDir: 'dist',
@@ -19,6 +20,7 @@ export default defineConfig({
         alias: {
             '@': '/resources/js',
             '@shared': '/resources/js/Shared',
+            '@images': '/resources/images',
         },
     },
 });

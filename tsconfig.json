@@ -15,7 +15,8 @@
         "baseUrl": ".",
         "paths": {
             "@/*": ["resources/js/*"],
-            "@shared/*": ["resources/js/Shared/*"]
+            "@shared/*": ["resources/js/Shared/*"],
+            "@images/*": ["resources/images/*"]
         }
     },
     "include": ["resources/js/**/*.ts", "resources/js/**/*.d.ts", "resources/js/**/*.vue"]
