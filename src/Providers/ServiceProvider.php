@@ -10,6 +10,7 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Database\Events\MigrationEnded;
 use Illuminate\Database\Events\MigrationStarted;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class ServiceProvider extends BaseServiceProvider
@@ -39,7 +40,12 @@ class ServiceProvider extends BaseServiceProvider
                 ->everyThirtyMinutes();
         });
 
-        $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
+        Route::group([
+            'prefix' => config('strat.path'),
+            'middleware' => 'can:viewStrat',
+        ], function () {
+            $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
+        });
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'strat');
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
 

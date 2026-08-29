@@ -17,7 +17,7 @@ beforeEach(function () {
 });
 
 test('it should run every pending migration synchronously by default', function () {
-    $this->get('/run-migrations')
+    $this->get($this->stratUrl('/run-migrations'))
         ->assertOk()
         ->assertExactJson(['status' => 'completed']);
 
@@ -36,7 +36,7 @@ test('it should run a single migration synchronously when an id is given', funct
         'updated_at' => now(),
     ]);
 
-    $this->get("/run-migrations/{$id}")
+    $this->get($this->stratUrl("/run-migrations/{$id}"))
         ->assertOk()
         ->assertExactJson(['status' => 'completed']);
 
@@ -53,7 +53,7 @@ test('it should dispatch a queued job when async migrations are enabled', functi
 
     Bus::fake();
 
-    $this->get('/run-migrations/5')
+    $this->get($this->stratUrl('/run-migrations/5'))
         ->assertOk()
         ->assertExactJson(['status' => 'queued']);
 

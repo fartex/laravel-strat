@@ -25,7 +25,7 @@ test('it should list migrations with a default per page of 10', function () {
         fn (int $i) => ($this->seedMigration)(sprintf('2024_01_01_%06d_migration', $i))
     );
 
-    $this->get('/migrations')
+    $this->get($this->stratUrl('/migrations'))
         ->assertOk()
         ->assertJsonCount(10, 'data')
         ->assertJsonPath('total', 12)
@@ -36,7 +36,7 @@ test('it should respect a custom per_page parameter', function () {
     ($this->seedMigration)('2024_01_01_000001_migration');
     ($this->seedMigration)('2024_01_01_000002_migration');
 
-    $this->get('/migrations?per_page=1')
+    $this->get($this->stratUrl('/migrations?per_page=1'))
         ->assertOk()
         ->assertJsonCount(1, 'data')
         ->assertJsonPath('per_page', 1)
@@ -44,7 +44,7 @@ test('it should respect a custom per_page parameter', function () {
 });
 
 test('it should reject a non-integer per_page parameter', function () {
-    $this->getJson('/migrations?per_page=not-a-number')
+    $this->getJson($this->stratUrl('/migrations?per_page=not-a-number'))
         ->assertStatus(422)
         ->assertJsonValidationErrors('per_page');
 });

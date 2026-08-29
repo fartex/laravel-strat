@@ -12,7 +12,7 @@ test('it should sync migrations and report success', function () {
     $migrator->path(__DIR__.'/../../../Fixtures/migrations/sync');
     $migrator->getRepository()->createRepository();
 
-    $this->get('/sync-migrations')
+    $this->get($this->stratUrl('/sync-migrations'))
         ->assertOk()
         ->assertExactJson(['synced' => true]);
 
@@ -20,7 +20,7 @@ test('it should sync migrations and report success', function () {
 });
 
 test('it should report success even when there is nothing to sync', function () {
-    $this->get('/sync-migrations')
+    $this->get($this->stratUrl('/sync-migrations'))
         ->assertOk()
         ->assertExactJson(['synced' => true]);
 
