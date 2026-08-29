@@ -21,7 +21,7 @@ const { runningAll, runMigrations } = useRunMigrations();
         />
 
         <Chip
-          text="v0.0.0"
+          text="v0.1.0"
           color="accent"
         />
       </div>

@@ -9,7 +9,7 @@ import enUSEnum from '@shared/Lang/Enum/en-US.json';
 
 export default createI18n({
     legacy: false,
-    locale: LocaleEnum.PT_BR,
+    locale: LocaleEnum.EN_US,
     fallbackLocale: LocaleEnum.EN_US,
     messages: {
         [LocaleEnum.PT_BR]: { ...ptBR, ...ptBREnum },
