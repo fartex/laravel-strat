@@ -35,7 +35,7 @@ test('it should upsert each migration file, resolving its table, type, status, b
 
     $rows = DB::table('strat_migrations')->get()->keyBy('migration');
 
-    expect($rows)->toHaveCount(3)
+    expect($rows)->toHaveCount(4)
         ->and($rows->has('0001_01_01_000000_create_strat_migrations_table'))->toBeFalse();
 
     $created = $rows->get('2024_01_01_000001_create_widgets_table');
@@ -56,6 +56,10 @@ test('it should upsert each migration file, resolving its table, type, status, b
         ->and($dropped->type)->toBe(MigrationTypeEnum::DROP->value)
         ->and($dropped->table)->toBe('drop_gadgets')
         ->and($dropped->database)->toBe('reporting.sqlite');
+
+    // A local $connection variable must not be mistaken for the class property.
+    $audits = $rows->get('2024_01_01_000004_create_audits_table');
+    expect($audits->database)->toBe(':memory:');
 });
 
 test('it should re-sync status without touching the original created_at', function () {

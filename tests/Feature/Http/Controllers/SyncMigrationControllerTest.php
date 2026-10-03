@@ -16,7 +16,7 @@ test('it should sync migrations and report success', function () {
         ->assertOk()
         ->assertExactJson(['synced' => true]);
 
-    expect(DB::table('strat_migrations')->count())->toBe(3);
+    expect(DB::table('strat_migrations')->count())->toBe(4);
 });
 
 test('it should report success even when there is nothing to sync', function () {

@@ -3,6 +3,8 @@
 @import '@fontsource-variable/jetbrains-mono';
 @import '@fortawesome/fontawesome-svg-core/styles.css';
 
+@source not '../../dist';
+
 @theme {
     --font-sans: 'Inter Variable', sans-serif;
     --font-mono: 'JetBrains Mono Variable', monospace;
