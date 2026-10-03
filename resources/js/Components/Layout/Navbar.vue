@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // ** Local Imports
-import Chip from '@shared/Components/Chip.vue';
 import Button from '@shared/Components/Button.vue';
 import Notification from '@/Components/Layout/Navbar/Notification.vue';
 import GithubStars from '@/Components/Layout/Navbar/GithubStars.vue';
+import ReleaseVersion from '@/Components/Layout/Navbar/ReleaseVersion.vue';
 import { useRunMigrations } from '@shared/App/composables/useRunMigrations';
 import logo from '@images/favicon.png';
 
@@ -20,10 +20,7 @@ const { runningAll, runMigrations } = useRunMigrations();
           class="h-8 w-8"
         />
 
-        <Chip
-          text="v0.1.0"
-          color="accent"
-        />
+        <ReleaseVersion />
       </div>
 
       <div class="flex flex-row items-center gap-4">
