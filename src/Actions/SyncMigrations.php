@@ -88,21 +88,19 @@ class SyncMigrations
     /**
      * Read the migration's $connection property straight from its source, avoiding
      * having to require/instantiate a file the real Migrator may already have loaded.
+     *
+     * Only a class property declared with a string literal is considered, so local
+     * variables (e.g. $connection = config(...) inside up()) fall back to the default.
      */
     private function resolveConnection(string $source): string
     {
-        if (! Str::contains($source, '$connection')) {
-            return config('database.default');
+        $pattern = '/\b(?:public|protected|private|var)\s+(?:\??string\s+)?\$connection\s*=\s*([\'"])([^\'"]+)\1\s*;/';
+
+        if (preg_match($pattern, $source, $matches)) {
+            return $matches[2];
         }
 
-        $connection = Str::of($source)
-            ->after('$connection')
-            ->after('=')
-            ->before(';')
-            ->trim(" \t\n\r\0\x0B'\"")
-            ->toString();
-
-        return blank($connection) ? config('database.default') : $connection;
+        return config('database.default');
     }
 
     /**
