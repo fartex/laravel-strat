@@ -42,11 +42,13 @@ class ServiceProvider extends BaseServiceProvider
 
         Route::group([
             'prefix' => config('strat.path'),
-            'middleware' => 'can:viewStrat',
+            'middleware' => [...config('strat.middleware', ['web']), 'can:viewStrat'],
         ], function () {
             $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
         });
+
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'strat');
+
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
 
         $this->publishes([

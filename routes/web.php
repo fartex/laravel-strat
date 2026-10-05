@@ -11,8 +11,8 @@ Route::get('/', IndexController::class);
 
 Route::get('/migrations', MigrationController::class);
 
-Route::get('/sync-migrations', SyncMigrationController::class);
+Route::post('/sync-migrations', SyncMigrationController::class);
 
 Route::get('/database-status', DatabaseStatusController::class);
 
-Route::get('/run-migrations/{id?}', RunMigrationController::class);
+Route::post('/run-migrations/{id?}', RunMigrationController::class);
