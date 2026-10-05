@@ -1,7 +1,4 @@
 <script setup lang="ts">
-// ** External Imports
-import { useI18n } from 'vue-i18n';
-
 // ** Local Imports
 import type { TMigrationCounts } from '@shared/App/types/shared';
 

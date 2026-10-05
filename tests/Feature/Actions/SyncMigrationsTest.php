@@ -43,7 +43,7 @@ test('it should upsert each migration file, resolving its table, type, status, b
         ->and($created->type)->toBe(MigrationTypeEnum::CREATE->value)
         ->and($created->table)->toBe('create_widgets')
         ->and($created->batch)->toBe(1)
-        ->and($created->database)->toBe(':memory:');
+        ->and($created->database)->toBe(config('database.connections.'.config('database.default').'.database'));
 
     $renamed = $rows->get('2024_01_01_000002_rename_widgets_table');
     expect($renamed->status)->toBe(MigrationStatusEnum::PENDING->value)
@@ -59,7 +59,7 @@ test('it should upsert each migration file, resolving its table, type, status, b
 
     // A local $connection variable must not be mistaken for the class property.
     $audits = $rows->get('2024_01_01_000004_create_audits_table');
-    expect($audits->database)->toBe(':memory:');
+    expect($audits->database)->toBe(config('database.connections.'.config('database.default').'.database'));
 });
 
 test('it should re-sync status without touching the original created_at', function () {

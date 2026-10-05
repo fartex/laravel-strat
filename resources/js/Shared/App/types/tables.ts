@@ -1,4 +1,9 @@
-export const MigrationTable: any = [
+export interface TTableColumn {
+    key: string;
+    title: string;
+}
+
+export const MigrationTable: TTableColumn[] = [
     {
         key: 'status',
         title: 'Status',

@@ -1,0 +1,44 @@
+name: Build
+
+on:
+  pull_request:
+    branches: ["main", "develop"]
+    types: ["opened", "reopened", "synchronize", "ready_for_review"]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  assets:
+    name: Dashboard Assets
+    runs-on: ubuntu-24.04
+    if: github.event.pull_request.draft == false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - name: Install Front-End Dependencies
+        run: |
+          npm ci
+
+      - name: Build Front-End Assets
+        run: |
+          npm run build
+
+      # The compiled dashboard ships inside the package, so the committed bundle
+      # must match the sources. Only app.js is compared: Vite renumbers the font
+      # files (app3.woff2, ...) on every build, which would make a full diff flaky.
+      - name: Check Committed Bundle Is Up To Date
+        run: |
+          if ! git diff --quiet -- dist/app.js; then
+            echo "::error file=dist/app.js::dist/app.js is out of date. Run 'npm run build' and commit the result."
+            exit 1
+          fi
