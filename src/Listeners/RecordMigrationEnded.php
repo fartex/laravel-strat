@@ -7,6 +7,7 @@ use Fartex\Strat\Enum\MigrationStatusEnum;
 use Illuminate\Database\Events\MigrationEnded;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 use function Illuminate\Support\enum_value;
 
@@ -25,6 +26,10 @@ class RecordMigrationEnded
     public function handle(MigrationEnded $event): void
     {
         $startedAt = RecordMigrationStarted::pull($event->name);
+
+        if (! Schema::hasTable('strat_migrations')) {
+            return;
+        }
 
         $this->ensureMigrationIsTracked($event->name);
 
