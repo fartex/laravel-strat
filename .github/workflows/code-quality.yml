@@ -1,0 +1,77 @@
+name: Code Quality
+
+on:
+  pull_request:
+    branches: ["main", "develop"]
+    types: ["opened", "reopened", "synchronize", "ready_for_review"]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  php:
+    name: PHP Style
+    runs-on: ubuntu-24.04
+    if: github.event.pull_request.draft == false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP, with Composer and Extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.5"
+          tools: composer:v2
+          coverage: none
+
+      - name: Validate composer.json and composer.lock
+        run: |
+          composer validate --strict
+
+      - name: Cache Vendor
+        uses: actions/cache@v4
+        with:
+          path: ./vendor
+          key: vendor-${{ hashFiles('composer.lock') }}
+          restore-keys: vendor-
+
+      - name: Install Composer Dependencies
+        run: |
+          composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Code Style Check
+        run: |
+          vendor/bin/pint --test
+
+  frontend:
+    name: Front-End Lint & Types
+    runs-on: ubuntu-24.04
+    if: github.event.pull_request.draft == false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - name: Install Front-End Dependencies
+        run: |
+          npm ci
+
+      - name: Lint
+        run: |
+          npm run lint:check
+
+      - name: Formatting Check
+        run: |
+          npm run format:check
+
+      - name: Type Check
+        run: |
+          npm run typecheck

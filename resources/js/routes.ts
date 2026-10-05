@@ -1,6 +1,6 @@
 // ** Local Imports
 import dashboard from './Pages/Dashboard.vue';
-import setting from './Pages/Setting.vue';
+// import setting from './Pages/Setting.vue';
 
 export default [
     {

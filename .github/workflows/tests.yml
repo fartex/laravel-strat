@@ -1,0 +1,99 @@
+name: Tests
+
+on:
+  pull_request:
+    branches: ["main", "develop"]
+    types: ["opened", "reopened", "synchronize", "ready_for_review"]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: PHP ${{ matrix.php }} - ${{ matrix.database }} - ${{ matrix.dependencies }}
+    runs-on: ubuntu-24.04
+    if: github.event.pull_request.draft == false
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ["8.5"]
+        database: ["sqlite", "mysql", "pgsql"]
+        dependencies: ["prefer-lowest", "prefer-stable"]
+
+    services:
+      mysql:
+        image: mysql:8.4
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_DATABASE: testing
+          MYSQL_ROOT_PASSWORD: password
+        options: >-
+          --health-cmd "mysqladmin ping -h 127.0.0.1 -uroot -ppassword"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      pgsql:
+        image: postgres:17
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_DB: testing
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+        options: >-
+          --health-cmd "pg_isready -U postgres -d testing"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP, with Composer and Extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          extensions: pdo_sqlite, pdo_mysql, pdo_pgsql
+          coverage: none
+
+      - name: Cache Composer Packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.composer/cache/files
+          key: composer-${{ matrix.php }}-${{ matrix.dependencies }}-${{ hashFiles('composer.json') }}
+          restore-keys: composer-${{ matrix.php }}-${{ matrix.dependencies }}-
+
+      # A package must work across the whole version range it declares, so the
+      # lock file is ignored and dependencies are resolved for each matrix entry.
+      - name: Install Composer Dependencies
+        run: |
+          composer update --${{ matrix.dependencies }} --prefer-dist --no-interaction --no-progress
+
+      - name: Configure MySQL Connection
+        if: matrix.database == 'mysql'
+        run: |
+          echo "DB_CONNECTION=mysql" >> "$GITHUB_ENV"
+          echo "DB_HOST=127.0.0.1" >> "$GITHUB_ENV"
+          echo "DB_PORT=3306" >> "$GITHUB_ENV"
+          echo "DB_DATABASE=testing" >> "$GITHUB_ENV"
+          echo "DB_USERNAME=root" >> "$GITHUB_ENV"
+          echo "DB_PASSWORD=password" >> "$GITHUB_ENV"
+
+      - name: Configure PostgreSQL Connection
+        if: matrix.database == 'pgsql'
+        run: |
+          echo "DB_CONNECTION=pgsql" >> "$GITHUB_ENV"
+          echo "DB_HOST=127.0.0.1" >> "$GITHUB_ENV"
+          echo "DB_PORT=5432" >> "$GITHUB_ENV"
+          echo "DB_DATABASE=testing" >> "$GITHUB_ENV"
+          echo "DB_USERNAME=postgres" >> "$GITHUB_ENV"
+          echo "DB_PASSWORD=password" >> "$GITHUB_ENV"
+
+      - name: Run Pest Tests
+        run: |
+          vendor/bin/pest --compact

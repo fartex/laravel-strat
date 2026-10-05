@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // ** Local Imports
 import Button from '@shared/Components/Button.vue';
-import Notification from '@/Components/Layout/Navbar/Notification.vue';
+// import Notification from '@/Components/Layout/Navbar/Notification.vue';
 import GithubStars from '@/Components/Layout/Navbar/GithubStars.vue';
 import ReleaseVersion from '@/Components/Layout/Navbar/ReleaseVersion.vue';
 import { useRunMigrations } from '@shared/App/composables/useRunMigrations';

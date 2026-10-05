@@ -1,0 +1,55 @@
+name: Security
+
+on:
+  pull_request:
+    branches: ["main", "develop"]
+    types: ["opened", "reopened", "synchronize", "ready_for_review"]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  npm:
+    name: npm Audit
+    runs-on: ubuntu-24.04
+    if: github.event.pull_request.draft == false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      # Runtime dependencies are compiled into dist/app.js and shipped to every
+      # host app, so high/critical advisories there block the PR.
+      - name: Audit Runtime Dependencies
+        run: |
+          npm audit --omit=dev --audit-level=high
+
+  composer:
+    name: Composer Audit
+    runs-on: ubuntu-24.04
+    if: github.event.pull_request.draft == false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP, with Composer and Extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.5"
+          tools: composer:v2
+          coverage: none
+
+      # Advisories here come from dev-only packages (the host app resolves its own
+      # PHP dependencies), so they are reported as a warning instead of blocking.
+      - name: Audit Composer Dependencies
+        run: |
+          if ! composer audit --locked --no-interaction; then
+            echo "::warning::composer audit found advisories. Review them with 'composer audit'."
+          fi
