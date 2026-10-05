@@ -11,6 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (Schema::hasTable('strat_migrations')) {
+            app('migration.repository')->delete((object) [
+                'migration' => '0001_01_01_000000_create_strat_migrations_table',
+            ]);
+
+            return;
+        }
+
         Schema::create('strat_migrations', function (Blueprint $table) {
             $table->id();
             $table->string('migration')->unique();

@@ -8,7 +8,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 beforeEach(function () {
-    (require __DIR__.'/../../../database/migrations/0001_01_01_000000_create_strat_migrations_table.php')->up();
+    (require __DIR__.'/../../../database/migrations/0000_00_00_000000_create_strat_migrations_table.php')->up();
 });
 
 test('it should do nothing when there are no migration files to sync', function () {
@@ -36,7 +36,7 @@ test('it should upsert each migration file, resolving its table, type, status, b
     $rows = DB::table('strat_migrations')->get()->keyBy('migration');
 
     expect($rows)->toHaveCount(4)
-        ->and($rows->has('0001_01_01_000000_create_strat_migrations_table'))->toBeFalse();
+        ->and($rows->has('0000_00_00_000000_create_strat_migrations_table'))->toBeFalse();
 
     $created = $rows->get('2024_01_01_000001_create_widgets_table');
     expect($created->status)->toBe(MigrationStatusEnum::EXECUTED->value)
