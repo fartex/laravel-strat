@@ -69,6 +69,12 @@ Gate::define('viewStrat', function ($user = null) {
 
 Make sure to review this before deploying to production.
 
+The dashboard routes run through the `web` middleware group by default, so the logged-in user is passed to the gate. To redirect guests to the login page instead of returning a 403, add `auth` in `config/strat.php`:
+
+```php
+'middleware' => ['web', 'auth'],
+```
+
 ## ⚙️ Configuration
 
 The published `config/strat.php` file controls which connections Strat monitors and how dashboard-triggered migrations are executed:

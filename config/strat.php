@@ -15,6 +15,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Route Middleware
+    |--------------------------------------------------------------------------
+    |
+    | These middleware will be assigned to every Strat route, before the
+    | viewStrat gate check. The "web" group is required so the session is
+    | started and the authenticated user can be resolved. Add "auth" to
+    | redirect guests to the login page instead of returning a 403.
+    |
+    */
+    'middleware' => ['web'],
+
+    /*
+    |--------------------------------------------------------------------------
     | Database Connections
     |--------------------------------------------------------------------------
     |
