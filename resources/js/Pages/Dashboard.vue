@@ -67,7 +67,7 @@ const syncMigrations = (): void => {
   syncing.value = true;
 
   axios
-    .get('/sync-migrations')
+    .post('/sync-migrations')
     .then(() => fetchMigrations())
     .finally(() => {
       setTimeout(() => {

@@ -17,7 +17,7 @@ export function useRunMigrations() {
             runningIds.value.add(id);
         }
 
-        return axios.get(id === null ? '/run-migrations' : `/run-migrations/${id}`).finally(() => {
+        return axios.post(id === null ? '/run-migrations' : `/run-migrations/${id}`).finally(() => {
             if (id === null) {
                 runningAll.value = false;
             } else {

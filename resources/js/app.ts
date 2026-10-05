@@ -15,6 +15,10 @@ import '../css/app.css';
 axios.defaults.baseURL =
     document.querySelector('meta[name="strat-base-path"]')?.getAttribute('content') ?? '';
 
+// Send the session's CSRF token so state-changing (POST) routes pass VerifyCsrfToken
+axios.defaults.headers.common['X-CSRF-TOKEN'] =
+    document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') ?? '';
+
 const router = createRouter({
     routes,
     history: createWebHashHistory(),
