@@ -10,7 +10,7 @@ interface ReleaseResponse {
   tag_name: string;
 }
 
-const version = ref<string>('v0.1.0');
+const version = ref<string | null>(null);
 
 onMounted(() => {
   axios
@@ -24,6 +24,7 @@ onMounted(() => {
 
 <template>
   <Chip
+    v-if="version"
     :text="version"
     color="accent"
   />

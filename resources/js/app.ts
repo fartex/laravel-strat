@@ -15,9 +15,18 @@ import '../css/app.css';
 axios.defaults.baseURL =
     document.querySelector('meta[name="strat-base-path"]')?.getAttribute('content') ?? '';
 
-// Send the session's CSRF token so state-changing (POST) routes pass VerifyCsrfToken
-axios.defaults.headers.common['X-CSRF-TOKEN'] =
-    document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') ?? '';
+// Send the session's CSRF token so state-changing (POST) routes pass VerifyCsrfToken.
+// Only for the app's own (relative) routes: third-party APIs such as GitHub reject the
+// header on CORS preflight, and the token must not leak outside the app anyway.
+const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') ?? '';
+
+axios.interceptors.request.use((config) => {
+    if (!/^https?:\/\//i.test(config.url ?? '')) {
+        config.headers['X-CSRF-TOKEN'] = csrfToken;
+    }
+
+    return config;
+});
 
 const router = createRouter({
     routes,

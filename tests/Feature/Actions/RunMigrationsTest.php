@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 beforeEach(function () {
-    (require __DIR__.'/../../../database/migrations/0001_01_01_000000_create_strat_migrations_table.php')->up();
+    (require __DIR__.'/../../../database/migrations/0000_00_00_000000_create_strat_migrations_table.php')->up();
 
     $this->migrator = app(Migrator::class);
     $this->migrator->path(__DIR__.'/../../Fixtures/migrations/run');

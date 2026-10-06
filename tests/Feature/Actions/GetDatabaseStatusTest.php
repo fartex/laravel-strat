@@ -11,7 +11,7 @@ test('it should report only the default connection when none are configured', fu
         ->and(data_get($status, '0.name'))->toBe(config('database.default'))
         ->and(data_get($status, '0.online'))->toBeTrue()
         ->and(data_get($status, '0.latency_ms'))->toBeInt()
-        ->and(data_get($status, '0.driver'))->toBe('sqlite');
+        ->and(data_get($status, '0.driver'))->toBe(config('database.connections.'.config('database.default').'.driver'));
 });
 
 test('it should report every connection listed in strat.connections', function () {

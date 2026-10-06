@@ -8,7 +8,7 @@
 
     <title>Strat</title>
 
-    <link rel="icon" href="{{ asset('vendor/strat/app.png') }}">
+    <link rel="icon" href="{{ asset('vendor/strat/assets/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('vendor/strat/app.css') }}">
 </head>
 <body>

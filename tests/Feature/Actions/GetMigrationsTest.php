@@ -6,7 +6,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 beforeEach(function () {
-    (require __DIR__.'/../../../database/migrations/0001_01_01_000000_create_strat_migrations_table.php')->up();
+    (require __DIR__.'/../../../database/migrations/0000_00_00_000000_create_strat_migrations_table.php')->up();
 
     $this->seedMigration = function (string $migration, string $status) {
         DB::table('strat_migrations')->insert([

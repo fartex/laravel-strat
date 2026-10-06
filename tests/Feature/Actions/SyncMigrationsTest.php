@@ -8,7 +8,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 beforeEach(function () {
-    (require __DIR__.'/../../../database/migrations/0001_01_01_000000_create_strat_migrations_table.php')->up();
+    (require __DIR__.'/../../../database/migrations/0000_00_00_000000_create_strat_migrations_table.php')->up();
 });
 
 test('it should do nothing when there are no migration files to sync', function () {
@@ -36,14 +36,14 @@ test('it should upsert each migration file, resolving its table, type, status, b
     $rows = DB::table('strat_migrations')->get()->keyBy('migration');
 
     expect($rows)->toHaveCount(4)
-        ->and($rows->has('0001_01_01_000000_create_strat_migrations_table'))->toBeFalse();
+        ->and($rows->has('0000_00_00_000000_create_strat_migrations_table'))->toBeFalse();
 
     $created = $rows->get('2024_01_01_000001_create_widgets_table');
     expect($created->status)->toBe(MigrationStatusEnum::EXECUTED->value)
         ->and($created->type)->toBe(MigrationTypeEnum::CREATE->value)
         ->and($created->table)->toBe('create_widgets')
         ->and($created->batch)->toBe(1)
-        ->and($created->database)->toBe(':memory:');
+        ->and($created->database)->toBe(config('database.connections.'.config('database.default').'.database'));
 
     $renamed = $rows->get('2024_01_01_000002_rename_widgets_table');
     expect($renamed->status)->toBe(MigrationStatusEnum::PENDING->value)
@@ -59,7 +59,7 @@ test('it should upsert each migration file, resolving its table, type, status, b
 
     // A local $connection variable must not be mistaken for the class property.
     $audits = $rows->get('2024_01_01_000004_create_audits_table');
-    expect($audits->database)->toBe(':memory:');
+    expect($audits->database)->toBe(config('database.connections.'.config('database.default').'.database'));
 });
 
 test('it should re-sync status without touching the original created_at', function () {
