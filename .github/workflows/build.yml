@@ -34,11 +34,11 @@ jobs:
           npm run build
 
       # The compiled dashboard ships inside the package, so the committed bundle
-      # must match the sources. Only app.js is compared: Vite renumbers the font
-      # files (app3.woff2, ...) on every build, which would make a full diff flaky.
+      # must match the sources.
       - name: Check Committed Bundle Is Up To Date
         run: |
-          if ! git diff --quiet -- dist/app.js; then
-            echo "::error file=dist/app.js::dist/app.js is out of date. Run 'npm run build' and commit the result."
+          if [ -n "$(git status --porcelain -- dist)" ]; then
+            git status --short -- dist
+            echo "::error::dist/ is out of date. Run 'npm run build' and commit the result."
             exit 1
           fi
