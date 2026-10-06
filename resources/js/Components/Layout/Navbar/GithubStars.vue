@@ -21,20 +21,24 @@ const formatStars = (count: number): string => {
 };
 
 onMounted(() => {
-  axios.get<RepoResponse>('https://api.github.com/repos/fartex/laravel-strat').then((response) => {
-    stars.value = formatStars(response.data.stargazers_count);
-  });
+  axios
+    .get<RepoResponse>('https://api.github.com/repos/fartex/laravel-strat')
+    .then((response) => {
+      stars.value = formatStars(response.data.stargazers_count);
+    })
+    .catch(() => {});
 });
 </script>
 
 <template>
   <a
+    v-if="stars"
     target="_blank"
     class="cursor-pointer"
     href="https://github.com/fartex/laravel-strat"
   >
     <Chip
-      :text="stars ?? '0'"
+      :text="stars"
       class="py-1.5 text-white"
       icon="fa-brands fa-github"
     />
