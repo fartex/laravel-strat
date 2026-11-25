@@ -16,7 +16,7 @@
     ],
     "type": "library",
     "require": {
-        "php": "^8.5",
+        "php": "^8.6",
         "illuminate/support": "^13.0",
         "illuminate/routing": "^13.0"
     },
@@ -42,7 +42,7 @@
     },
     "require-dev": {
         "orchestra/testbench": "^11.1",
-        "pestphp/pest": "^4.7",
+        "pestphp/pest": "^5.3",
         "laravel/pint": "^1.29"
     },
     "config": {
